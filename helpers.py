@@ -7,12 +7,12 @@ def get_key_to_update(winner: str, player: str) -> Literal['w', 'd', 'l']:
   return 'w' if winner == player else 'd' if winner == 'D' else 'l'
 
 def parse_leaderboard() -> Leaderboard:
-  with open('./src/data/leaderboard.json') as file:
+  with open('./data/leaderboard.json') as file:
     return loads(file.read())
   
 
 def clear_leaderboard():
-  with open('./src/data/leaderboard.json', 'w') as file:
+  with open('./data/leaderboard.json', 'w') as file:
     file.write(dumps({}))
   
 
@@ -31,7 +31,7 @@ def update_leaderboard(names: list[str], winner: str):
 
     leaderboard[name][get_key_to_update(winner, name)] += 1
 
-  with open('./src/data/leaderboard.json', 'w') as file:
+  with open('./data/leaderboard.json', 'w') as file:
     file.write(dumps(leaderboard, indent=2))
 
 
